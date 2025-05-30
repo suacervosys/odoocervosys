@@ -1,0 +1,27 @@
+version: '3.1'
+services:
+  web2:
+    image: odoo:17.0
+    depends_on:
+      - db2
+    ports:
+      - "8070:8069" # Use a different port (8070) to avoid conflict with the first instance
+    volumes:
+      - odoo-web-data2:/var/lib/odoo
+      - ./config:/etc/odoo
+      - ./addons:/mnt/extra-addons
+    environment:
+      - HOST=db2
+      - USER=odoo2
+      - PASSWORD=odoo2
+  db2:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=odoo2
+      - POSTGRES_USER=odoo2
+    volumes:
+      - odoo-db-data2:/var/lib/postgresql/data
+volumes:
+  odoo-web-data2:
+  odoo-db-data2:

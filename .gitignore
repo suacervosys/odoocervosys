@@ -1,0 +1,16 @@
+# Docker volumes & temporary files
+odoo-web-data2/
+odoo-db-data2/
+*.pyc
+__pycache__/
+.env
+*.log
+*.swp
+
+# VSCode or other editor files
+.vscode/
+.idea/
+.DS_Store
+
+# PostgreSQL socket files (just in case)
+*.pid
